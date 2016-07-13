@@ -1,2 +1,20 @@
 # 3word
-3 word social media
+
+## social media limited
+
+easy to use
+
+fun to use
+
+limits inspire creativity
+
+## contribute to code
+
+$ python app.py
+
+
+
+
+
+
+

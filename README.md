@@ -10,7 +10,13 @@ limits inspire creativity
 
 ## contribute to code
 
+flask for backend
+
 $ python app.py
+
+username is admin
+
+password is cheese
 
 
 

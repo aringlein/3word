@@ -1,29 +1,21 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
-  </head>
-  <body>
-
-  	<div class="container-fluid">
-  	  <div class="row">
-  	  	<div class="col-xs-6 col-xs-offset-3 text-center">
-
-  	  	  <h1> Welcome to 3word </h1>
-
-  	  	  <form>
-  	  	  	<fieldset class="form-group">
-			  <label for="wordInput">Contribute Your Thoughts:</label>
-			  <input type="text" class="form-control" id="wordInput" placeholder="I think good.">
-	   	    </fieldset>
-	   	  </form>
-
-  		</div>
-  	  </div>
-  	</div>
-  </body>
- </html>
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    <form action="{{ url_for('add_post') }}" method=post class=add-post>
+      <dl>
+        <dt>User:
+        <dd><input type=text size=30 name=user>
+        <dt>Text:
+        <dd><textarea name=text rows=5 cols=40></textarea>
+        <dd><input type=submit value=Share>
+      </dl>
+    </form>
+  {% endif %}
+  <ul class=posts>
+  {% for post in posts %}
+    <li><h2>{{ post.user }}</h2>{{ post.text|safe }}
+  {% else %}
+    <li><em>No posts yet.</em>
+  {% endfor %}
+  </ul>
+{% endblock %}
